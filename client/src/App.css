@@ -1,0 +1,864 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap');
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  background: #f8f8fc;
+  color: #171322;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+.home-page {
+  width: 100%;
+  min-height: 100%;
+}
+
+
+/* =====================================================
+   HERO SECTION
+===================================================== */
+
+.hero-section {
+  position: relative;
+
+  width: 100%;
+
+  min-height: calc(100vh - 65px);
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(255, 0, 153, 0.8),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(119, 0, 255, 0.8),
+      transparent 40%
+    ),
+    linear-gradient(
+      120deg,
+      #e50087 0%,
+      #bd00e8 42%,
+      #7025ff 75%,
+      #3038d8 100%
+    );
+
+  color: white;
+}
+
+
+/* =====================================================
+   BACKGROUND GLOW
+===================================================== */
+
+.hero-glow {
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(80px);
+
+  pointer-events: none;
+
+  opacity: 0.5;
+}
+
+.hero-glow-one {
+  width: 350px;
+  height: 350px;
+
+  background: #ff55c7;
+
+  top: -100px;
+  left: -100px;
+}
+
+.hero-glow-two {
+  width: 450px;
+  height: 450px;
+
+  background: #483cff;
+
+  right: -150px;
+  bottom: -150px;
+}
+
+
+/* =====================================================
+   DECORATIVE CIRCLES
+===================================================== */
+
+.hero-circle {
+  position: absolute;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.hero-circle-one {
+  width: 500px;
+  height: 500px;
+
+  right: -250px;
+  top: -200px;
+}
+
+.hero-circle-two {
+  width: 350px;
+  height: 350px;
+
+  left: -200px;
+  bottom: -150px;
+}
+
+
+/* =====================================================
+   HERO CONTAINER
+===================================================== */
+
+.hero-container {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+
+  min-height: calc(100vh - 65px);
+
+  padding: 80px 6vw;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(450px, 1fr);
+
+  gap: 70px;
+
+  align-items: center;
+}
+
+
+/* =====================================================
+   HERO CONTENT
+===================================================== */
+
+.hero-content {
+  width: 100%;
+
+  animation: heroContentIn 0.9s ease forwards;
+}
+
+
+/* =====================================================
+   BADGE
+===================================================== */
+
+.hero-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 10px 18px;
+
+  margin-bottom: 28px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  background: rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(12px);
+
+  font-size: 16px;
+
+  font-weight: 500;
+
+  color: white;
+
+  animation: badgeFloat 3s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.hero-title {
+  font-size: clamp(58px, 6vw, 105px);
+
+  line-height: 0.98;
+
+  letter-spacing: -4px;
+
+  font-weight: 800;
+
+  margin: 0;
+
+  max-width: 900px;
+}
+
+.hero-title span {
+  display: block;
+
+  color: #fff0a8;
+
+  margin-top: 8px;
+}
+
+.hero-title strong {
+  display: block;
+
+  color: white;
+
+  font-weight: 800;
+
+  margin-top: 8px;
+}
+
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.hero-description {
+  max-width: 680px;
+
+  margin-top: 34px;
+
+  font-size: clamp(18px, 1.5vw, 23px);
+
+  line-height: 1.65;
+
+  color: rgba(255, 255, 255, 0.88);
+
+  font-weight: 400;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.hero-buttons {
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  margin-top: 38px;
+
+  flex-wrap: wrap;
+}
+
+.hero-primary-button,
+.hero-secondary-button {
+  min-height: 58px;
+
+  padding: 0 25px;
+
+  border-radius: 12px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 11px;
+
+  font-size: 17px;
+
+  font-weight: 700;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.hero-primary-button {
+  background: white;
+
+  color: #c500ad;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.hero-secondary-button {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: white;
+
+  backdrop-filter: blur(10px);
+}
+
+.hero-primary-button:hover,
+.hero-secondary-button:hover {
+  transform: translateY(-5px);
+}
+
+.hero-primary-button:hover {
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.25);
+}
+
+.hero-secondary-button:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.hero-stats {
+  display: flex;
+
+  align-items: center;
+
+  gap: 42px;
+
+  margin-top: 48px;
+
+  flex-wrap: wrap;
+}
+
+.hero-stat {
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+}
+
+.stat-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.hero-stat h3 {
+  font-size: 25px;
+
+  line-height: 1;
+
+  margin-bottom: 4px;
+
+  font-weight: 800;
+}
+
+.hero-stat p {
+  font-size: 14px;
+
+  color: rgba(255, 255, 255, 0.75);
+
+  white-space: nowrap;
+}
+
+
+/* =====================================================
+   HERO VISUAL
+===================================================== */
+
+.hero-visual {
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  animation: heroImageIn 1s ease 0.2s both;
+}
+
+
+/* =====================================================
+   IMAGE WRAPPER
+===================================================== */
+
+.hero-image-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 760px;
+
+  aspect-ratio: 1 / 0.82;
+
+  padding: 9px;
+
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.25);
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.25);
+
+  backdrop-filter: blur(10px);
+
+  animation: imageFloat 5s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.hero-image {
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 23px;
+}
+
+
+/* =====================================================
+   IMAGE OVERLAY
+===================================================== */
+
+.hero-image-overlay {
+  position: absolute;
+
+  inset: 9px;
+
+  border-radius: 23px;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(20, 10, 30, 0.7),
+      transparent 55%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   FLOATING CARD
+===================================================== */
+
+.hero-floating-card {
+  position: absolute;
+
+  left: 35px;
+
+  bottom: 35px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 17px 22px;
+
+  min-width: 300px;
+
+  border-radius: 16px;
+
+  background: rgba(36, 24, 28, 0.72);
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  backdrop-filter: blur(15px);
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.floating-icon {
+  width: 43px;
+  height: 43px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #ffca28;
+
+  color: #542400;
+}
+
+.hero-floating-card p {
+  font-size: 13px;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  margin-bottom: 3px;
+}
+
+.hero-floating-card h3 {
+  font-size: 18px;
+
+  line-height: 1.25;
+
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   RATING
+===================================================== */
+
+.hero-rating {
+  position: absolute;
+
+  top: 25px;
+
+  right: 25px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 11px 15px;
+
+  border-radius: 13px;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  color: #7134db;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.hero-rating svg {
+  color: #ffb300;
+}
+
+.hero-rating div {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.hero-rating strong {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.hero-rating span {
+  font-size: 11px;
+
+  color: #777;
+
+  margin-top: 3px;
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes heroContentIn {
+  from {
+    opacity: 0;
+
+    transform: translateX(-40px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateX(0);
+  }
+}
+
+@keyframes heroImageIn {
+  from {
+    opacity: 0;
+
+    transform: translateX(50px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes imageFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes badgeFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1100px) {
+
+  .hero-container {
+    grid-template-columns: 1fr;
+
+    gap: 60px;
+
+    padding: 70px 6vw;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-badge {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-title {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    width: 85%;
+
+    margin: 0 auto;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+  .hero-section {
+    min-height: auto;
+  }
+
+  .hero-container {
+    min-height: auto;
+
+    padding:
+      55px 20px
+      70px;
+
+    gap: 45px;
+  }
+
+  .hero-badge {
+    font-size: 13px;
+
+    padding: 8px 13px;
+  }
+
+  .hero-title {
+    font-size: clamp(48px, 14vw, 70px);
+
+    line-height: 1;
+
+    letter-spacing: -2.5px;
+  }
+
+  .hero-description {
+    font-size: 17px;
+
+    line-height: 1.55;
+
+    margin-top: 25px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+
+    width: 100%;
+
+    margin-top: 30px;
+  }
+
+  .hero-primary-button,
+  .hero-secondary-button {
+    width: 100%;
+  }
+
+  .hero-stats {
+    gap: 22px;
+
+    margin-top: 35px;
+
+    justify-content: center;
+  }
+
+  .hero-stat {
+    min-width: 140px;
+  }
+
+  .hero-stat h3 {
+    font-size: 21px;
+  }
+
+  .hero-stat p {
+    font-size: 12px;
+  }
+
+  .hero-visual {
+    width: 100%;
+  }
+
+  .hero-image-wrapper {
+    aspect-ratio: 0.9;
+
+    border-radius: 23px;
+  }
+
+  .hero-image-overlay {
+    border-radius: 16px;
+  }
+
+  .hero-floating-card {
+    left: 18px;
+
+    bottom: 18px;
+
+    min-width: auto;
+
+    right: 18px;
+
+    padding: 13px 15px;
+  }
+
+  .hero-floating-card h3 {
+    font-size: 15px;
+  }
+
+  .hero-rating {
+    top: 18px;
+
+    right: 18px;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 420px) {
+
+  .hero-title {
+    font-size: 45px;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    width: 100%;
+
+    padding-left: 15px;
+  }
+
+  .hero-stat {
+    width: 100%;
+  }
+
+  .hero-floating-card {
+    display: none;
+  }
+
+}
