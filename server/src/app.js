@@ -20,19 +20,22 @@ dotenv.config();
 const app = express();
 
 // =====================================================
-// ES Module Directory
+// ES MODULE DIRECTORY
 // =====================================================
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // =====================================================
-// CORS
+// CORS CONFIGURATION
 // =====================================================
 
 const allowedOrigins = [
+  // Production frontend
   process.env.CLIENT_URL,
   process.env.FRONTEND_URL,
+
+  // Local development
   "http://localhost:5173",
   "http://localhost:5174",
   "http://localhost:3000",
@@ -41,19 +44,28 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (e.g. mobile apps, curl, server-to-server)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin) || process.env.NODE_ENV !== "production") {
+      // Allow requests without Origin header
+      // Example: Postman, curl, server-to-server
+      if (!origin) {
         return callback(null, true);
       }
-      return callback(null, true);
+
+      // Allow configured origins only
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      console.log("Blocked CORS origin:", origin);
+
+      return callback(new Error("Not allowed by CORS"));
     },
+
     credentials: true,
   })
 );
 
 // =====================================================
-// Body Parsers
+// BODY PARSERS
 // =====================================================
 
 app.use(express.json());
@@ -65,26 +77,21 @@ app.use(
 );
 
 // =====================================================
-// Other Middleware
+// OTHER MIDDLEWARE
 // =====================================================
 
 app.use(cookieParser());
+
 app.use(morgan("dev"));
 
 // =====================================================
-// Static Uploads
+// STATIC UPLOADS
 // =====================================================
 
 // server/uploads
-const uploadsPath = path.join(
-  __dirname,
-  "../uploads"
-);
+const uploadsPath = path.join(__dirname, "../uploads");
 
-console.log(
-  "Uploads folder:",
-  uploadsPath
-);
+console.log("Uploads folder:", uploadsPath);
 
 app.use(
   "/uploads",
@@ -92,63 +99,81 @@ app.use(
 );
 
 // =====================================================
-// Routes
+// API ROUTES
 // =====================================================
 
+// Authentication
 app.use(
   "/api/auth",
   authRoutes
 );
 
+// Users
 app.use(
   "/api/users",
   userRoutes
 );
 
+// Packages
 app.use(
   "/api/packages",
   packageRoutes
 );
 
+// Bookings
 app.use(
   "/api/bookings",
   bookingRoutes
 );
 
+// Gallery
 app.use(
   "/api/gallery",
   galleryRoutes
 );
 
+// Reviews
 app.use(
   "/api/reviews",
   reviewRoutes
 );
 
+// Contact
 app.use(
   "/api/contacts",
   contactRoutes
 );
 
+// Admin
 app.use(
   "/api/admin",
   adminRoutes
 );
 
 // =====================================================
-// Root
+// API TEST ROUTE
+// =====================================================
+
+app.get("/api/auth/test", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Auth route is working",
+  });
+});
+
+// =====================================================
+// ROOT ROUTE
 // =====================================================
 
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
-    message:
-      "Event Decoration Management API is running 🚀",
+    message: "Event Decoration Management API is running 🚀",
   });
 });
 
 // =====================================================
-// 404
+// 404 HANDLER
 // =====================================================
 
 app.use((req, res) => {
@@ -159,25 +184,28 @@ app.use((req, res) => {
 });
 
 // =====================================================
-// Error Handler
+// GLOBAL ERROR HANDLER
 // =====================================================
 
 app.use((error, req, res, next) => {
-  console.error(
-    "GLOBAL ERROR:",
-    error
-  );
+  console.error("GLOBAL ERROR:", error);
+
+  // CORS error
+  if (error.message === "Not allowed by CORS") {
+    return res.status(403).json({
+      success: false,
+      message: "CORS policy blocked this request",
+    });
+  }
 
   return res.status(500).json({
     success: false,
-    message:
-      error.message ||
-      "Internal Server Error",
+    message: error.message || "Internal Server Error",
   });
 });
 
 // =====================================================
-// Export
+// EXPORT
 // =====================================================
 
 export default app;
