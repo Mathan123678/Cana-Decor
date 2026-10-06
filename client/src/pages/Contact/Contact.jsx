@@ -163,10 +163,10 @@ function Contact() {
                   </p>
 
                   <a
-                    href="tel:+919876543210"
+                    href="tel:+919025519121"
                     className="mt-1 block text-lg font-bold text-gray-900 hover:text-purple-600"
                   >
-                    +91 98765 43210
+                    +91 9025519121
                   </a>
                 </div>
 
@@ -185,10 +185,10 @@ function Contact() {
                   </p>
 
                   <a
-                    href="mailto:eventdecor@gmail.com"
+                    href="mailto:dharaneshjagadeesh@gmail.com"
                     className="mt-1 block text-lg font-bold text-gray-900 hover:text-purple-600"
                   >
-                    eventdecor@gmail.com
+                    dharaneshjagadeesh@gmail.com
                   </a>
                 </div>
 
