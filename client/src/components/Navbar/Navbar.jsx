@@ -18,23 +18,22 @@ function Navbar() {
 
   return (
     <header className="sticky top-0 z-50">
-
       <nav className="bg-white/80 backdrop-blur-xl border-b border-gray-100">
 
-        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
 
-          {/* ================= LOGO ================= */}
+          {/* ================= LOGO + BRAND ================= */}
 
           <Link
             to="/"
             onClick={closeMenu}
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-3 group min-w-0"
           >
 
             {/* Logo Image */}
-            <div className="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center bg-white shadow-md border border-gray-100 group-hover:scale-105 transition duration-300">
+            <div className="w-12 h-12 sm:w-12 sm:h-12 rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center bg-white shadow-md border border-gray-100 group-hover:scale-105 transition duration-300">
 
-             <img
+              <img
                 src="/cd%20logo.jpeg"
                 alt="Cana Decor Logo"
                 className="w-full h-full object-contain"
@@ -43,13 +42,14 @@ function Navbar() {
             </div>
 
             {/* Brand Name */}
-            <div className="hidden sm:block">
+            <div className="flex flex-col">
 
-              <div className="text-2xl font-black tracking-tight leading-none">
+              <div className="text-lg sm:text-2xl font-black tracking-tight leading-none whitespace-nowrap">
                 Cana<span className="text-yellow-500"> Decor</span>
               </div>
 
-              <div className="text-[9px] tracking-[3px] text-gray-400 font-bold mt-1">
+              {/* Tagline - hidden on small mobile screens */}
+              <div className="hidden sm:block text-[9px] tracking-[3px] text-gray-400 font-bold mt-1">
                 CREATE • CELEBRATE • REMEMBER
               </div>
 
@@ -125,7 +125,7 @@ function Navbar() {
 
           <button
             type="button"
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 flex-shrink-0"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
@@ -212,7 +212,6 @@ function Navbar() {
         )}
 
       </nav>
-
     </header>
   );
 }
