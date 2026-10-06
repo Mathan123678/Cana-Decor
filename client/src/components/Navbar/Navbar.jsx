@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 function Navbar() {
@@ -21,34 +21,44 @@ function Navbar() {
 
       <nav className="bg-white/80 backdrop-blur-xl border-b border-gray-100">
 
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
 
-          {/* LOGO */}
+          {/* ================= LOGO ================= */}
 
           <Link
             to="/"
             onClick={closeMenu}
-            className="flex items-center gap-2"
+            className="flex items-center gap-3 group"
           >
 
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center text-white shadow-lg">
-              <Sparkles size={21} />
+            {/* Logo Image */}
+            <div className="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center bg-white shadow-md border border-gray-100 group-hover:scale-105 transition duration-300">
+
+             <img
+                src="/cd%20logo.jpeg"
+                alt="Cana Decor Logo"
+                className="w-full h-full object-contain"
+              />
+
             </div>
 
-            <div>
-              <div className="text-2xl font-black tracking-tight">
-                Cana<span className="text-purple-600">Decor</span>
+            {/* Brand Name */}
+            <div className="hidden sm:block">
+
+              <div className="text-2xl font-black tracking-tight leading-none">
+                Cana<span className="text-yellow-500"> Decor</span>
               </div>
 
-              <div className="text-[9px] tracking-[3px] text-gray-400 font-bold">
+              <div className="text-[9px] tracking-[3px] text-gray-400 font-bold mt-1">
                 CREATE • CELEBRATE • REMEMBER
               </div>
+
             </div>
 
           </Link>
 
 
-          {/* DESKTOP NAVIGATION */}
+          {/* ================= DESKTOP NAVIGATION ================= */}
 
           <div className="hidden md:flex items-center gap-8">
 
@@ -90,7 +100,7 @@ function Navbar() {
           </div>
 
 
-          {/* DESKTOP BUTTONS */}
+          {/* ================= DESKTOP BUTTONS ================= */}
 
           <div className="hidden md:flex items-center gap-3">
 
@@ -111,7 +121,7 @@ function Navbar() {
           </div>
 
 
-          {/* MOBILE BUTTON */}
+          {/* ================= MOBILE BUTTON ================= */}
 
           <button
             type="button"
@@ -119,17 +129,19 @@ function Navbar() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
+
             {menuOpen ? (
               <X size={28} />
             ) : (
               <Menu size={28} />
             )}
+
           </button>
 
         </div>
 
 
-        {/* MOBILE MENU */}
+        {/* ================= MOBILE MENU ================= */}
 
         {menuOpen && (
 
